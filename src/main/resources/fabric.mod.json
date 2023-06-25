@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "voicechat-broadcast-plugin-fabric",
+  "version": "${version}",
+  "name": "VoicechatBroadcastPlugin",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/dreamingcodes/voicechat-broadcast-plugin-fabric"
+  },
+  "license": "MIT",
+  "environment": "server",
+  "entrypoints": {
+    "voicechat": [
+      "codes.dreaming.voicechatbroadcastpluginfabric.plugin.VoicechatBroadcastPlugin"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "voicechat": ">=${minecraft_version}-${voicechat_api_version}"
+  }
+}
