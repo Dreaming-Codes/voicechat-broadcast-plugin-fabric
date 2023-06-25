@@ -6,7 +6,9 @@ import de.maxhenkel.voicechat.api.events.MicrophonePacketEvent;
 import de.maxhenkel.voicechat.api.packets.StaticSoundPacket;
 import me.lucko.fabric.api.permissions.v0.Permissions;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.PlayerManager;
+import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 
@@ -61,7 +63,7 @@ public class VoicechatBroadcastPlugin implements VoicechatPlugin {
 
         VoicechatServerApi api = event.getVoicechat();
 
-        IntegratedServer server = MinecraftClient.getInstance().getServer();
+        MinecraftServer server = player.getServer();
 
         if (server == null) {
             return;
