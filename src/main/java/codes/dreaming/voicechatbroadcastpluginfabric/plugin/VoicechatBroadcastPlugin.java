@@ -11,6 +11,7 @@ import net.minecraft.server.PlayerManager;
 import net.minecraft.server.dedicated.MinecraftDedicatedServer;
 import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 
 public class VoicechatBroadcastPlugin implements VoicechatPlugin {
     static String PLUGIN_ID = "voicechat_broadcast";
@@ -41,11 +42,6 @@ public class VoicechatBroadcastPlugin implements VoicechatPlugin {
             return;
         }
 
-        // Check if the player has the broadcast permission
-        if (Permissions.check(player, "voicechat.broadcast", 2)) {
-            return;
-        }
-
         Group group = event.getSenderConnection().getGroup();
 
         // Check if the player sending the audio is actually in a group
@@ -55,6 +51,12 @@ public class VoicechatBroadcastPlugin implements VoicechatPlugin {
 
         // Only broadcast the voice when the group name is "broadcast"
         if (!group.getName().strip().equalsIgnoreCase("broadcast")) {
+            return;
+        }
+
+        // Check if the player has the broadcast permission
+        if (!Permissions.check(player.getCommandSource(), "voicechat.broadcast", 2)) {
+            player.sendMessage(Text.of("You don't have the permission to broadcast"), false);
             return;
         }
 
